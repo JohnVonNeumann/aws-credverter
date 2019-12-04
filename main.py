@@ -26,6 +26,7 @@ def parse_credentials_csv_file(file):
                 row['Console login link']
             )
 
+
 def main():
     """ main
     """
@@ -44,6 +45,7 @@ def main():
     print(args.profile)
 
     parse_credentials_csv_file(args.csv_file)
+
 
 if __name__ == "__main__":
     main()
