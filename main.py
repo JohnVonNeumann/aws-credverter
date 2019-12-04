@@ -3,6 +3,8 @@ import argparse
 
 
 def check_awscli_exists(executable="aws"):
+    """ check_awscli_exists
+    """
     if shutil.which(executable) is None:
         return False
     else:
@@ -10,6 +12,8 @@ def check_awscli_exists(executable="aws"):
 
 
 def main():
+    """ main
+    """
     if check_awscli_exists():
         pass
     else:
