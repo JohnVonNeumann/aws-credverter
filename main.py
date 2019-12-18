@@ -17,14 +17,26 @@ def parse_credentials_csv_file(file):
     """
     with open(file, newline='') as content:
         reader = csv.DictReader(content)
-        for row in reader:
-            print(
-                row['User name'],
-                row['Password'],
-                row['Access key ID'],
-                row['Secret access key'],
-                row['Console login link']
-            )
+        # not built to handle more than one line in the cred file
+        count = 1
+        cred_list = []
+        while count > 0:
+            for row in reader:
+                count -= 1
+                cred_list.append(
+                    row['User name'],
+                    row['Password'],
+                    row['Access key ID'],
+                    row['Secret access key'],
+                    row['Console login link']
+                )
+
+    return cred_list
+
+
+def create_aws_profile(list):
+    """ create_aws_profile """
+    profile = []
 
 
 def main():
@@ -44,7 +56,9 @@ def main():
     print(args.csv_file)
     print(args.profile)
 
-    parse_credentials_csv_file(args.csv_file)
+    creds = parse_credentials_csv_file(args.csv_file)
+
+    create_aws_profile(creds)
 
 
 if __name__ == "__main__":
